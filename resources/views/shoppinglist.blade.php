@@ -48,7 +48,7 @@
             <h3 style="margin: 0px">{{$product->name}}</h3>
             <div>
                 <form method="post" action="../list/delete">
-                    <input value="delete" type="submit" class="btn btn-danger">
+                    <input value="Delete" type="submit" class="btn btn-danger">
                     <input hidden value="{{$product->id}}" name="id">
                     @csrf
                 </form>
