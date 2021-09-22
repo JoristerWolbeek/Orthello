@@ -13,7 +13,7 @@
         @csrf
     </form>
     <div class="list-group" >
-        <form method="get">
+        <form method="get" action="{{url('/list')}}">
             <div class="list-group-item list-group-item-action d-flex bg-secundary" >
                 <a class="text-secondary" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
@@ -47,7 +47,8 @@
             </a>
             <h3 style="margin: 0px">{{$product->name}}</h3>
             <div>
-                <form method="post" action="../list/delete">
+                <form method="POST" action="{{url('list/delete')}}">
+                {{ method_field('PUT') }}
                     <input value="Delete" type="submit" class="btn btn-danger">
                     <input hidden value="{{$product->id}}" name="id">
                     @csrf
@@ -61,9 +62,10 @@
             <p>Requested by: {{$product->user->name}} - {{$product->updated_at->diffForHumans()}}</p>
         </div>
     </div>
+    
     @endif
-
     @endforeach
+
 @endsection
 
 
