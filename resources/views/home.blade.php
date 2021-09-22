@@ -11,8 +11,12 @@
                 <p class="card-text">This section shows you all the products currently on the shopping list, you can add, change or delete entries</p>
                 <a href="{{url("/list")}}" class="btn btn-primary">Go to shopping list</a>
             </div>
-            </div>
         </div>
     </div>
+    @foreach ($products as $product)
+        @if ($product->updated_at >= auth::user()->last_login)
+            
+        @endif
+    @endforeach
 </div>
 @endsection

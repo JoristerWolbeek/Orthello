@@ -36,7 +36,7 @@ class ListController extends Controller
     public function add(request $req)
     {
         DB::table("products")->updateOrInsert(
-            ['name' => $req->name],
+            ['name' => ucfirst(strtolower($req->name))],
             ["user_id"=>$req->id, "on_list"=>true, "updated_at"=>now()]
         );
         $products = Products::with('user')->get();
