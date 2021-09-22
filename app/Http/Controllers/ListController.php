@@ -24,6 +24,7 @@ class ListController extends Controller
     {
         $products = Products::with('user')->get();
         return view('shoppinglist', ["products"=>$products]);
+
     }
 
     public function delete(request $req)
