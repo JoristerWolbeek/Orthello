@@ -18,6 +18,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/products', [App\Http\Controllers\ListController::class, 'index'])->name('products');
 Route::get('/list', [App\Http\Controllers\ListController::class, 'index'])->name('list');
+Route::post('/list/delete', [App\Http\Controllers\ListController::class, 'delete'])->name('/list/delete');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
