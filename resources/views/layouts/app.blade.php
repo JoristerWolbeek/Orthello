@@ -39,9 +39,6 @@
                     <li class="nav-item">
                             <a class="nav-link text-primary" href="{{ route('list') }}">{{ __('list') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{ route('products') }}">{{ __('products') }}</a>
-                        </li>        
                     </ul>
                     @endguest
 
