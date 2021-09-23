@@ -1,17 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <div class="container">
-    <form method="post" action="../list/add">
+    <form method="post" action="../list/add" autocomplete="off">
         <input hidden value="{{Auth::user()->id}}" name="id">
         <div class="input-group mb-3">
-        <input type="text" name="name" class="form-control" placeholder="Chocolate" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Add to shopping list</button>
         </div>
         </div>
         @csrf
     </form>
+{{-- For autocomplete --}}
+    <script type="text/javascript">
+        var route = "{{ url('autocomplete-search') }}";
+        $('#search').typeahead({
+            source: function (query, process) {
+                return $.get(route, {
+                    query: query
+                }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+    </script>
+    {{-- End for autocomplete code --}}
     <div class="list-group" >
         <form method="get" action="../list">
             <div class="list-group-item list-group-item-action d-flex bg-secundary" >

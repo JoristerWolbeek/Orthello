@@ -17,10 +17,5 @@
             </div>
         </div>
     </div>
-    @foreach ($products as $product)
-        @if ($product->updated_at >= auth::user()->last_login)
-
-        @endif
-    @endforeach
 </div>
 @endsection

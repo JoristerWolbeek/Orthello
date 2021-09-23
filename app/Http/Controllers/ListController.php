@@ -23,24 +23,23 @@ class ListController extends Controller
     public function index()
     {
         $products = Products::with('user')->get();
-        return view('shoppinglist', ["products"=>$products]);
-
+        return view('shoppinglist', ["products" => $products]);
     }
 
     public function delete(request $req)
     {
-        Products::where("id", $req->id)->update(["on_list"=>false]);        
+        Products::where("id", $req->id)->update(["on_list" => false]);
         $products = Products::with('user')->get();
-        return view('shoppinglist', ["products"=>$products]);
+        return back()->with(["products" => $products]);
     }
 
     public function add(request $req)
     {
         DB::table("products")->updateOrInsert(
             ['name' => ucfirst(strtolower($req->name))],
-            ["user_id"=>$req->id, "on_list"=>true, "updated_at"=>now()]
+            ["user_id" => $req->id, "on_list" => true, "updated_at" => now()]
         );
         $products = Products::with('user')->get();
-        return view('shoppinglist', ["products"=>$products]);
+        return back()->with(["products" => $products]);
     }
 }
