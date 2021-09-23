@@ -7,7 +7,7 @@
     <form method="post" action="../list/add" autocomplete="off">
         <input hidden value="{{Auth::user()->id}}" name="id">
         <div class="input-group mb-3">
-        <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Add to shopping list</button>
         </div>
