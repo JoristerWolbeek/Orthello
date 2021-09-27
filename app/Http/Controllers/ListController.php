@@ -22,6 +22,7 @@ class ListController extends Controller
 
     public function index()
     {
+        session()->forget('last_login');
         $products = Products::with('user')->get();
         return view('shoppinglist', ["products" => $products]);
     }

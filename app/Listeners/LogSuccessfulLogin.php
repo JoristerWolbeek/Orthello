@@ -26,6 +26,7 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
+        session(['last_login' =>  $event->user->last_login]);
         $event->user->last_login = now();
         $event->user->save();
     }
