@@ -39,7 +39,7 @@
                     @else
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{ route('list') }}">{{ __('list') }}</a>
+                            <a class="nav-link text-primary" href="{{ route('list') }}">{{ __('Shopping list') }}</a>
                         </li>
                     </ul>
                     @endguest
