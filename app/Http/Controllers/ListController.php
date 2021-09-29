@@ -24,23 +24,34 @@ class ListController extends Controller
     {
         session()->forget('last_login');
         $products = Products::with('user')->get();
-        return view('shoppinglist', ["products" => $products]);
+        return view('shoppinglist', compact(["products"]));
     }
 
     public function delete(request $req)
     {
+        $validatedData = $req->validate(
+            [
+            'id' => ['required'],
+            ]
+        );
         Products::where("id", $req->id)->update(["on_list" => false]);
         $products = Products::with('user')->get();
-        return back()->with(["products" => $products]);
+        return back()->with(compact(["products"]));
     }
 
     public function add(request $req)
     {
+        $validatedData = $req->validate(
+            [
+            'name' => ['required', 'unique:products', 'max:255'],
+            'id' => ['required'],
+            ]
+        );
         DB::table("products")->updateOrInsert(
-            ['name' => ucfirst(strtolower($req->name))],
-            ["user_id" => $req->id, "on_list" => true, "updated_at" => now()]
+            ['name' => ucfirst(strtolower($validatedData["name"]))],
+            ["user_id" => $validatedData["id"], "on_list" => true, "updated_at" => now()]
         );
         $products = Products::with('user')->get();
-        return back()->with(["products" => $products]);
+        return back()->with(compact(["products"]));
     }
 }
