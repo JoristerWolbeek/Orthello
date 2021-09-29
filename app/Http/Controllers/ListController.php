@@ -31,9 +31,10 @@ class ListController extends Controller
     {
         $validatedData = $req->validate(
             [
-            'id' => ['required'],
+            'id' => ['required', "integer"],
             ]
         );
+
         Products::where("id", $req->id)->update(["on_list" => false]);
         $products = Products::with('user')->get();
         return back()->with(compact(["products"]));
@@ -43,11 +44,11 @@ class ListController extends Controller
     {
         $validatedData = $req->validate(
             [
-            'name' => ['required', 'unique:products', 'max:255'],
-            'id' => ['required'],
+            'name' => ['required', 'max:255'],
+            'id' => ['required', "integer"],
             ]
         );
-        DB::table("products")->updateOrInsert(
+        Products::updateOrInsert(
             ['name' => ucfirst(strtolower($validatedData["name"]))],
             ["user_id" => $validatedData["id"], "on_list" => true, "updated_at" => now()]
         );
