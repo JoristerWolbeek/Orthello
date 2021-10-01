@@ -14,17 +14,19 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create(
-            'products', function (Blueprint $table) {
+            'products',
+            function (Blueprint $table) {
                 $table->id();
                 $table->timestamps();
                 $table->string('name');
-                $table->boolean('on_list')->default(false);
+                $table->boolean('on_list')->default("false");
                 $table->bigInteger('user_id')->unsigned();
             }
         );
 
         Schema::table(
-            'products', function ($table) {
+            'products',
+            function ($table) {
                 $table->foreign('user_id')->references('id')->on('users');
             }
         );
