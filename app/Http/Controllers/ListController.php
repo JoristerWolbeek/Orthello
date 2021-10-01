@@ -44,7 +44,7 @@ class ListController extends Controller
     {
         $validatedData = $req->validate(
             [
-            'name' => ['required',"unique:pgsql.products,name,except,on_list", 'max:255'],
+            'name' => ['required', "string", 'max:255'],
             'id' => ['required', "integer"],
             ]
         );
