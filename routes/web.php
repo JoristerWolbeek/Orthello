@@ -13,8 +13,8 @@ use App\Http\Controllers\AutocompleteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::redirect('/', 'login');
-Auth::routes(['register' => true]);
+Route::redirect('/', 'login');
+Auth::routes(['register' => false]);
 
 Route::get('/products', [App\Http\Controllers\ListController::class, 'index'])->name('products');
 Route::get('/list', [App\Http\Controllers\ListController::class, 'index'])->name('list');
