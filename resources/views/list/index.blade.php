@@ -12,7 +12,8 @@
                 @endforeach
             </div>
         @endif
-        <form method="post" action="../list/add" autocomplete="off">
+        <form method="POST" action="{{ url('list/edit') }}" autocomplete="off">
+            {{ method_field('PUT') }}
             <input hidden value="{{ Auth::user()->id }}" name="id">
             <div class="input-group mb-3">
                 <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">

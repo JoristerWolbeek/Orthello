@@ -74,7 +74,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-
+        dd($request);
+        dd($product);
     }
 
     /**
@@ -83,8 +84,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Request $request)
     {
-        //
+        Product::destroy($request->id);
+        return back();
     }
 }

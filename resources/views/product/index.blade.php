@@ -35,7 +35,7 @@
                         </a>
                         <h3 style="margin: 0px">{{ $product->name }}</h3>
                         <div>
-                            <form method="POST" action="{{ url('list/delete') }}">
+                            <form method="POST" action="{{ url('productEntity/destroy') }}">
                                 {{ method_field('PUT') }}
                                 <input value="Delete" type="submit" class="btn btn-danger">
                                 <input hidden value="{{ $product->id }}" name="id">
@@ -47,9 +47,10 @@
                 </div>
                 <div class="collapse " id="collapseExample{{ $product->id }}">
                     <div class="container list-group px-5 my-5">
-                        <form method="POST" action="{{ url('products/update') }}">
+                        <form method="POST" action="{{ url('product/update/' . $product->id) }}">
                             @csrf
                             {{ method_field('PUT') }}
+                            <input hidden value="{{ $product->id }}" name="id">
                             <div class="form-floating mb-3">
                                 <label for="product">Product</label>
                                 <input required class="form-control" id="name" type="text" placeholder="product" data-sb-validations="required" />
