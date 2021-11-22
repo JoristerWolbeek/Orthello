@@ -74,8 +74,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        dd($request);
-        dd($product);
+        // dd($request);
+        // dd($product);
     }
 
     /**
@@ -86,7 +86,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product, Request $request)
     {
-        Product::destroy($request->id);
+           $validatedData = $request->validate(
+            [
+            'id' => ['required', "integer"],
+            ]
+        );
+        Product::destroy($validatedData["id"]);
         return back();
     }
 }

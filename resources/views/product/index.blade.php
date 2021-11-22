@@ -36,7 +36,7 @@
                         <h3 style="margin: 0px">{{ $product->name }}</h3>
                         <div>
                             <form method="POST" action="{{ url('productEntity/destroy') }}">
-                                {{ method_field('PUT') }}
+                                {{ method_field('DELETE') }}
                                 <input value="Delete" type="submit" class="btn btn-danger">
                                 <input hidden value="{{ $product->id }}" name="id">
                                 @csrf
