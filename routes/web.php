@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AutocompleteController;
 
 /*
@@ -16,10 +18,13 @@ use App\Http\Controllers\AutocompleteController;
 Route::redirect('/', 'login');
 Auth::routes(['register' => false]);
 
-Route::get('/products', [App\Http\Controllers\ListController::class, 'index'])->name('products');
-Route::get('/list', [App\Http\Controllers\ListController::class, 'index'])->name('list');
-Route::put('/list/delete', [App\Http\Controllers\ListController::class, 'delete'])->name('/list/delete');
-Route::post('/list/add', [App\Http\Controllers\ListController::class, 'add'])->name('/list/add');
-Route::get('/autocomplete-search', [AutocompleteController::class, 'autocompleteSearch'])->name('autocompleteSearch');
+Route::resource('/products', ProductController::class);
+Route::resource("/list", ListController::class);
+
+// Route::get('/products', [App\Http\Controllers\ListController::class, 'index'])->name('products');
+// Route::get('/list', [App\Http\Controllers\ListController::class, 'index'])->name('list');
+// Route::put('/list/delete', [App\Http\Controllers\ListController::class, 'delete'])->name('/list/delete');
+// Route::post('/list/add', [App\Http\Controllers\ListController::class, 'add'])->name('/list/add');
+// Route::get('/autocomplete-search', [AutocompleteController::class, 'autocompleteSearch'])->name('autocompleteSearch');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

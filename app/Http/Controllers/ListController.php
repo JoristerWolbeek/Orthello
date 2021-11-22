@@ -24,7 +24,7 @@ class ListController extends Controller
     {
         session()->forget('last_login');
         $products = Products::with('user')->get();
-        return view('shoppinglist', compact(["products"]));
+        return view('list.index', compact(["products"]));
     }
 
     public function delete(request $req)
