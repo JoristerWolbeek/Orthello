@@ -12,16 +12,15 @@
                 @endforeach
             </div>
         @endif
-        <form method="POST" action="{{ url('list/edit') }}" autocomplete="off">
-            {{ method_field('PUT') }}
+        <form method="POST" action="{{ url('list/cba') }}" autocomplete="off">
+            @csrf
             <input hidden value="{{ Auth::user()->id }}" name="id">
             <div class="input-group mb-3">
                 <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Add to shopping list</button>
+                    <input class="btn btn-primary" value="Add to shopping list" type="submit">
                 </div>
             </div>
-            @csrf
         </form>
         {{-- For autocomplete --}}
         <script type="text/javascript">

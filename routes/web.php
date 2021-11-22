@@ -22,7 +22,7 @@ Auth::routes(['register' => false]);
 
 Route::resource('productEntity', ProductController::class);
 Route::resource("list", ListController::class);
-
+Route::post("/list/cba", [ListController::class, 'cba']);
 Route::get('/autocomplete-search', [AutocompleteController::class, 'autocompleteSearch'])->name('autocompleteSearch');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

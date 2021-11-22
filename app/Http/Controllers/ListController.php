@@ -64,20 +64,7 @@ class ListController extends Controller
      */
     public function edit(Product $product)
     {
-        dd("test");
-        //  $validatedData = $request->validate(
-        //     [
-        //     'name' => ['required', "string", 'max:255'],
-        //     'id' => ['required', "integer"],
-        //     ]
-        // );
-        // Product::updateOrInsert(
-        //     ['name' => ucfirst(strtolower($validatedData["name"]))],
-        //     ["user_id" => $validatedData["id"], "on_list" => true, "updated_at" => now()]
-        // );
 
-        $products = Product::with('user')->get();
-        return back()->with(compact(["products"]));
     }
 
     /**
@@ -110,5 +97,21 @@ class ListController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function cba(Request $request)
+    {
+         $validatedData = $request->validate(
+            [
+            'name' => ['required', "string", 'max:255'],
+            'id' => ['required', "integer"],
+            ]
+        );
+        Product::updateOrInsert(
+            ['name' => ucfirst(strtolower($validatedData["name"]))],
+            ["user_id" => $validatedData["id"], "on_list" => true, "updated_at" => now()]
+        );
+        $products = Product::with('user')->get();
+        return back()->with(compact(["products"]));
     }
 }
