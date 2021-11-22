@@ -33,25 +33,7 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate(
-            [
-            'id' => ['required', "integer"],
-            ]
-        );
-        new Product()
-        //make a new product where request name is name
-        Product::where("id", $request->id)->update(["on_list" => false]);
-        $products = Product::with('user')->get();
-        return back()->with(compact(["products"]));
-    }
+
 
     /**
      * Display the specified resource.
@@ -92,7 +74,7 @@ class ProductController extends Controller
             ]
         );
         if(isset($validatedData["image"])){
-            $validatedData["image"] = Image::make($validatedData["image"])->resize(250, null, function ($constraint) {
+            $validatedData["image"] = Image::make($validatedData["image"])->resize(100, null, function ($constraint) {
             $constraint->aspectRatio();
         })->encode('data-url');
             Product::findOrFail($validatedData["id"])->update(['name'=>ucfirst(strtolower($validatedData["name"])), "image"=>$validatedData["image"]]);
@@ -118,6 +100,21 @@ class ProductController extends Controller
             ]
         );
         Product::destroy($validatedData["id"]);
+        return back();
+    }
+
+    public function cba(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+            'name' => ["required|string|unique:products,name"],
+            ]
+        );
+        $product = new Product();
+        $product->name = $validatedData["name"];
+        $product->on_list = 0;
+        $product->user_id = 1;
+        $product->save();
         return back();
     }
 }

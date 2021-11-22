@@ -12,18 +12,19 @@
                 @endforeach
             </div>
         @endif
-        <form method="post" action="../list/add" autocomplete="off">
+        <form method="POST" action="{{ url('productEntity/cba') }}" autocomplete="off">
             <input hidden value="{{ Auth::user()->id }}" name="id">
             <div class="input-group mb-3">
-                <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
+                <input required type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Add to shopping list</button>
+                    <input class="btn btn-primary" value="Add to product register" type="submit">
                 </div>
             </div>
             @csrf
         </form>
         <div class="list-group">
             @foreach ($products->sortBy(request('sort')) as $product)
+                <img src="{{ $product->image }}">
                 <div class="d-flex mt-3 justify-content-between">
                     <div class="list-group-item list-group-item-action d-flex justify-content-between bg-secundary">
                         <a class="text-secondary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
@@ -47,17 +48,17 @@
                 </div>
                 <div class="collapse " id="collapseExample{{ $product->id }}">
                     <div class="container list-group px-5 my-5">
-                        <form method="POST" action="{{ url('product/update/' . $product->id) }}">
+                        <form method="POST" action="{{ url('productEntity/update') }}" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                             <input hidden value="{{ $product->id }}" name="id">
                             <div class="form-floating mb-3">
-                                <label for="product">Product</label>
-                                <input required class="form-control" id="name" type="text" placeholder="product" data-sb-validations="required" />
+                                <label>Product</label>
+                                <input required class="form-control" name="name" type="text" placeholder="product" />
                             </div>
                             <div class="form-floating mb-3">
-                                <label for="newField2">Image</label>
-                                <input class="form-control" id="img" type="file" placeholder="New Field 2" />
+                                <label>Image</label>
+                                <input class="form-control" name="image" type="file" />
                             </div>
                             <div class="d-grid">
                                 <input class="btn btn-primary btn-lg" id="submitButton" value="Change" type="submit"></button>
