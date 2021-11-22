@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
                 $table->id();
                 $table->timestamps();
                 $table->string('name');
-                $table->string('image')->nullable();
+                $table->text('image')->nullable();
                 $table->boolean('on_list')->default(false);
                 $table->foreignIdFor(User::class);
             }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Routing\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 class ProductController extends Controller
 {
     public function __construct()
@@ -40,7 +41,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+            'id' => ['required', "integer"],
+            ]
+        );
+        new Product()
+        //make a new product where request name is name
+        Product::where("id", $request->id)->update(["on_list" => false]);
+        $products = Product::with('user')->get();
+        return back()->with(compact(["products"]));
     }
 
     /**
@@ -74,8 +84,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        // dd($request);
-        // dd($product);
+        $validatedData = $request->validate(
+            [
+            'id' => 'required|integer',
+            'name' => 'required|string|unique:products,name',
+            'image' => 'nullable|mimes:jpeg,jpg,png',
+            ]
+        );
+        if(isset($validatedData["image"])){
+            $validatedData["image"] = Image::make($validatedData["image"])->resize(250, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->encode('data-url');
+            Product::findOrFail($validatedData["id"])->update(['name'=>ucfirst(strtolower($validatedData["name"])), "image"=>$validatedData["image"]]);
+
+        }else{
+             Product::findOrFail($validatedData["id"])->update(['name'=>ucfirst(strtolower($validatedData["name"]))]);
+        }
+
+        return back();
     }
 
     /**

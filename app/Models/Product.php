@@ -13,7 +13,7 @@ class Product extends Model
         'name',
         'on_list',
         'user_id',
-        'img',
+        'image',
     ];
 
     public function user()
