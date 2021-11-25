@@ -24,10 +24,10 @@
         </form>
         <div class="list-group">
             @foreach ($products->sortBy(request('sort')) as $product)
-                <img src="{{ $product->image }}">
+                {{-- <img src="{{ $product->image }}"> --}}
                 <div class="d-flex mt-3 justify-content-between">
                     <div class="list-group-item list-group-item-action d-flex justify-content-between bg-secundary">
-                        <a class="text-secondary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
+                        <a class="text-primary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
                                 class="bi bi-caret-down" viewBox="0 0 16 16" data-toggle="collapse" data-target="#collapseExample{{ $product->id }}"
                                 aria-expanded="false" aria-controls="collapseExample{{ $product->id }}">
                                 <path

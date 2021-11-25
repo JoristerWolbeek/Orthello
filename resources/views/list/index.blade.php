@@ -39,8 +39,8 @@
         <div class="list-group">
             <form method="get" action="../list">
                 <div class="list-group-item list-group-item-action d-flex bg-secundary">
-                    <a class="text-secondary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
-                            class="bi bi-funnel-fill" viewBox="0 0 16 16" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                    <a class="text-black" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
+                            class="bi bi-funnel-fill text-primary" viewBox="0 0 16 16" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                             aria-controls="collapseExample">
                             <path
                                 d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z" />
@@ -68,7 +68,7 @@
                 @if ($product->on_list == true)
                     <div class="d-flex mt-3 justify-content-between">
                         <div class="list-group-item list-group-item-action d-flex justify-content-between bg-secundary">
-                            <a class="text-secondary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
+                            <a class="text-primary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
                                     class="bi bi-caret-down" viewBox="0 0 16 16" data-toggle="collapse" data-target="#collapseExample{{ $product->id }}"
                                     aria-expanded="false" aria-controls="collapseExample{{ $product->id }}">
                                     <path
