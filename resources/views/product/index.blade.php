@@ -12,19 +12,9 @@
                 @endforeach
             </div>
         @endif
-        <form method="POST" action="{{ url('productEntity/cba') }}" autocomplete="off">
-            <input hidden value="{{ Auth::user()->id }}" name="id">
-            <div class="input-group mb-3">
-                <input required type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <input class="btn btn-primary" value="Add to product register" type="submit">
-                </div>
-            </div>
-            @csrf
-        </form>
+        <h3 class="text-primary">Product Registery</h3>
         <div class="list-group">
             @foreach ($products->sortBy(request('sort')) as $product)
-                {{-- <img src="{{ $product->image }}"> --}}
                 <div class="d-flex mt-3 justify-content-between">
                     <div class="list-group-item list-group-item-action d-flex justify-content-between bg-secundary">
                         <a class="text-primary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
