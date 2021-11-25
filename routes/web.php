@@ -18,7 +18,7 @@ use App\Http\Controllers\AutocompleteController;
 |
 */
 Route::redirect('/', 'logout');
-Auth::routes(['register' => true]);
+Auth::routes(['register' => false]);
 
 Route::resource('productEntity', ProductController::class);
 Route::post("/ProductEntity/cba", [ProductController::class, 'cba']);
