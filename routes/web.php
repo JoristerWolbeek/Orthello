@@ -17,7 +17,7 @@ use App\Http\Controllers\AutocompleteController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', 'logout');
+Route::redirect('/', 'login');
 Auth::routes(['register' => false]);
 
 Route::resource('productEntity', ProductController::class);
