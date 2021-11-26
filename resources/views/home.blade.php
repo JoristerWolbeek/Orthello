@@ -47,7 +47,7 @@
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-12">
-                <h5 class="mt-4"> <span class="p-2 text-primary"> Version 1.1.1</span> - Nov 25 2021</h5>
+                <h5 class="mt-4"> <span class="p-2 text-primary"> Version 1.1.1</span> - Nov 26 2021</h5>
                 <ul class="list-unstyled mt-3">
                     <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>New icon</li>
                     <li class="text-muted ml-3"><i class="mdi mdi-circle-medium mr-2"></i>Recommending items currently not on list</li>
