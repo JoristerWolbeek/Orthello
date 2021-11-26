@@ -19,7 +19,7 @@ use App\Http\Controllers\AutocompleteController;
 */
 Route::redirect('/', 'login');
 Auth::routes(['register' => false]);
-
+Route::put("list/edit", [ListController::class, 'edit']);
 Route::resource('productEntity', ProductController::class);
 Route::post("/ProductEntity/cba", [ProductController::class, 'cba']);
 

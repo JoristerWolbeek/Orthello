@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Products::with('user')->get();
+
+        $products = Products::where('on_list', "=", false)->take(3)->get();
         return view('home', compact(["products"]));
     }
 }

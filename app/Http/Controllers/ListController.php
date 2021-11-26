@@ -62,8 +62,20 @@ class ListController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request, Product $product)
     {
+        $validatedData = $request->validate(
+            [
+            'id' => ['required', "integer"],
+            ]
+        );
+
+        $product = Product::find($validatedData["id"]);
+        $product->on_list = false;
+        $product->save();
+
+        $products = Product::with('user')->get();
+        return back()->with(compact(["products"]));
 
     }
 
@@ -82,8 +94,10 @@ class ListController extends Controller
             ]
         );
 
-        Product::where("id", $request->id)->update(["on_list" => false]);
-        $products = Product::with('user')->get();
+        $product = Product::find($validatedData["id"]);
+        $product->on_list = true;
+        $product->save();
+        $products = Product::where('on_list', "=", false)->take(3)->get();
         return back()->with(compact(["products"]));
 
     }

@@ -12,9 +12,10 @@
                 @endforeach
             </div>
         @endif
-        <h3 class="text-primary">Product Registery</h3>
+        <h3 class="text-primary">Product registery</h3>
         <div class="list-group">
             @foreach ($products->sortBy(request('sort')) as $product)
+                {{-- <img src="{{ $product->image }}"> --}}
                 <div class="d-flex mt-3 justify-content-between">
                     <div class="list-group-item list-group-item-action d-flex justify-content-between bg-secundary">
                         <a class="text-primary" href="#/"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="100%" fill="currentColor"
@@ -55,7 +56,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             @endforeach
             <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

@@ -77,7 +77,7 @@
                             </a>
                             <h3 style="margin: 0px">{{ $product->name }}</h3>
                             <div>
-                                <form method="POST" action="{{ url('list/delete') }}">
+                                <form method="POST" action="{{ url('list/edit') }}">
                                     {{ method_field('PUT') }}
                                     <input value="Remove" type="submit" class="btn btn-danger">
                                     <input hidden value="{{ $product->id }}" name="id">

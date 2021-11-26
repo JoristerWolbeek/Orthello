@@ -29,6 +29,8 @@
         <nav class=" navbar navbar-expand-md navbar-light shadow-sm bg-secondary">
             <div class="container">
                 <a class="navbar-brand text-primary" href="{{ url('/') }}">
+                    <img src="icon.png" width="32" height="32">
+
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,19 +44,17 @@
                     @else
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-primary" href="{{ url('/list') }}">{{ __('Shopping list') }}</a>
+                                <a href="{{ url('list') }}" class="nav-link {{ request()->is('list') ? 'text-primary' : '' }}">{{ __('Shopping list') }}</a>
                             </li>
                         </ul>
                     @endguest
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a :active="request()->routeIs('login')" class="nav-link text-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
@@ -64,8 +64,6 @@
                                 </li>
                             @endif
                         @else
-
-
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false" v-pre>
@@ -73,11 +71,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('/productEntity') }}">
+                                    <a class="dropdown-item {{ request()->is('productEntity') ? 'text-primary' : '' }}" href="{{ url('/productEntity') }}">
                                         {{ __('Products') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                                                                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
