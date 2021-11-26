@@ -16,7 +16,7 @@
             @csrf
             <input hidden value="{{ Auth::user()->id }}" name="id">
             <div class="input-group mb-3">
-                <input type="text" id="search" name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
+                <input type="text" id="search" required name="name" class="form-control" placeholder="Chocolate" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <input class="btn btn-primary" value="Add to shopping list" type="submit">
                 </div>
@@ -79,7 +79,7 @@
                             <div>
                                 <form method="POST" action="{{ url('list/delete') }}">
                                     {{ method_field('PUT') }}
-                                    <input value="Delete" type="submit" class="btn btn-danger">
+                                    <input value="Remove" type="submit" class="btn btn-danger">
                                     <input hidden value="{{ $product->id }}" name="id">
                                     @csrf
                                 </form>
