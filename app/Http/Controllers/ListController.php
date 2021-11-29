@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
 {
@@ -72,6 +73,7 @@ class ListController extends Controller
 
         $product = Product::find($validatedData["id"]);
         $product->on_list = false;
+        $product->user_id = Auth::user()->id;
         $product->save();
 
         $products = Product::with('user')->get();
@@ -96,6 +98,7 @@ class ListController extends Controller
 
         $product = Product::find($validatedData["id"]);
         $product->on_list = true;
+        $product->user_id = Auth::user()->id;
         $product->save();
         $products = Product::where('on_list', "=", false)->take(3)->get();
         return back()->with(compact(["products"]));
